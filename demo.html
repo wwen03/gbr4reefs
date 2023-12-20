@@ -37,12 +37,6 @@
     <script>
       const apiKey = "AAPKb2010f3df6ee4fd5992380c42b805df2ijFAeYKKeFxKC_PfJXz0jX52IGqAt9Pgf3PnvnnX8YCOPb1MRF3LqgrZVsDVy-71";
 
-      const map = L.map("map").setView([-19.17742, 145.828308], 6);
-      
-      const img = L.esri.Vector.vectorBasemapLayer("arcgis/imagery", {
-        apikey: apiKey
-      });
-
       // This feature layer for reefs update
       const reefs = L.esri
         .featureLayer({
@@ -60,7 +54,17 @@
              return { color: "#c91818", weight: 4 };
           }
           });
+      
+      const img = L.esri.Vector.vectorBasemapLayer("arcgis/imagery", {
+        apikey: apiKey
+      });
 
+      const map = L.map("map", {
+        center: [-19.17742, 145.828308],
+        zoom: 6,
+        layers: [img, reefs]
+      });
+      
       const baseLayers = {
         Imagery: img,
         Map: L.esri.Vector.vectorBasemapLayer("arcgis/outdoor", {
