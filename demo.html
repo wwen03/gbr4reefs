@@ -55,6 +55,12 @@
           url: "https://services1.arcgis.com/0BLakgVcDpWpuh4i/arcgis/rest/services/GBR_Reefs_Inshore_Update_2023/FeatureServer/0"
         })
         .addTo(map);
+
+      L.esri
+        .tiledMapLayer({
+          url: "https://tiles.arcgis.com/tiles/0BLakgVcDpWpuh4i/arcgis/rest/services/GBR_s2_mosaic_2021_2023/MapServer",
+        })
+        .addTo(map);
       
       // Add drawing tools
       map.pm.addControls(
