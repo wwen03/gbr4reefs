@@ -39,6 +39,13 @@
 
       const map = L.map("map").setView([-19.17742, 145.828308], 6);
 
+      const states = L.esri.featureLayer({
+        url: "https://sampleserver6.arcgisonline.com/arcgis/rest/services/Census/MapServer/3",
+        style: function (feature) {
+          return { color: "#bada55", weight: 2 };
+        }
+      });
+      
       L.esri.Vector.vectorBasemapLayer("arcgis/outdoor", {
         apikey: apiKey
       }).addTo(map);
@@ -46,6 +53,17 @@
       L.esri.featureLayer({
           url: "https://services1.arcgis.com/0BLakgVcDpWpuh4i/arcgis/rest/services/GBR_Reefs_Inshore_Update_2023/FeatureServer/0"
       }).addTo(map);
+
+      const gray = L.esri.Vector.vectorBasemapLayer("arcgis/light-gray", {
+        apikey: apiKey
+      });
+
+      const states = L.esri.featureLayer({
+        url: "https://sampleserver6.arcgisonline.com/arcgis/rest/services/Census/MapServer/3",
+        style: function (feature) {
+          return { color: "#bada55", weight: 2 };
+        }
+      });
       
       // Add drawing tools
       map.pm.addControls(
@@ -57,6 +75,20 @@
         drawText:false,
         drawCircleMarker:false
       });
+
+      const baseLayers = {
+        Grayscale: gray,
+        Newspaper: L.esri.Vector.vectorBasemapLayer("arcgis/newspaper", {
+          apikey: apiKey
+        })
+      };
+
+      const overlays = {
+        "U.S. States": states
+      };
+      
+      // https://leafletjs.com/reference.html#control-layers
+      L.control.layers(baseLayers, overlays).addTo(map);
     </script>
   </body>
 </html>
