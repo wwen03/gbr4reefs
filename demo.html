@@ -50,9 +50,12 @@
         apikey: apiKey
       }).addTo(map);
 
-      L.esri.featureLayer({
+      const reefs = L.esri.featureLayer({
           url: "https://services1.arcgis.com/0BLakgVcDpWpuh4i/arcgis/rest/services/GBR_Reefs_Inshore_Update_2023/FeatureServer/0"
-      }).addTo(map);
+          style: function (feature) {
+          return { color: "#bada55", weight: 2 };
+        }
+      });
 
       const gray = L.esri.Vector.vectorBasemapLayer("arcgis/light-gray", {
         apikey: apiKey
@@ -77,7 +80,7 @@
       };
 
       const overlays = {
-        "U.S. States": states
+        "Reefs": reefs
       };
       
       // https://leafletjs.com/reference.html#control-layers
