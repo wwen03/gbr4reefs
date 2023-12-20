@@ -43,6 +43,12 @@
         apikey: apiKey
       }).addTo(map);
 
+       L.esri
+        .featureLayer({
+          url: "https://services1.arcgis.com/0BLakgVcDpWpuh4i/arcgis/rest/services/GBR_Reefs_Inshore_Update_2023/FeatureServer"
+        })
+        .addTo(map);
+      
       // Add drawing tools
       map.pm.addControls(
       {
