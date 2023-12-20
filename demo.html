@@ -42,6 +42,12 @@
       L.esri.Vector.vectorBasemapLayer("arcgis/imagery", {
         apikey: apiKey
       }).addTo(map);
+
+      L.esri
+        .tiledMapLayer({
+          url: "https://tiles.arcgis.com/tiles/0BLakgVcDpWpuh4i/arcgis/rest/services/GBR_s2_mosaic_2021_2023/MapServer",
+          pane: "overlayPane"
+        }).addTo(map);
       
       // Add drawing tools
       map.pm.addControls(
