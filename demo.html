@@ -61,9 +61,6 @@
           }
           });
 
-      // https://leafletjs.com/reference.html#control-layers
-      L.control.layers(baseLayers, overlays).addTo(map);
-
       const baseLayers = {
         Imagery: img,
         Map: L.esri.Vector.vectorBasemapLayer("arcgis/outdoor", {
@@ -75,7 +72,11 @@
         "GBR Inshore": aoi,
         "Reefs Update 2023": reefs
       };
-      
+
+
+      // https://leafletjs.com/reference.html#control-layers
+      L.control.layers(baseLayers, overlays).addTo(map);
+
       // Add drawing tools
       map.pm.addControls(
       {
