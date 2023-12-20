@@ -39,27 +39,42 @@
 
       const map = L.map("map").setView([-19.17742, 145.828308], 6);
       
-      L.esri.Vector.vectorBasemapLayer("arcgis/imagery", {
+      const img = L.esri.Vector.vectorBasemapLayer("arcgis/imagery", {
         apikey: apiKey
-      }).addTo(map);
+      });
 
       // This feature layer for reefs update
-      L.esri
+      const reefs = L.esri
         .featureLayer({
           url: "https://services1.arcgis.com/0BLakgVcDpWpuh4i/arcgis/rest/services/GBR_Reefs_Inshore_Update_2023/FeatureServer/0",
           style: function () {
              return { color: "#b137b8", weight: 3 };
           }
-          }).addTo(map);
+          });
 
       // This feature layer for GBR Inshore Areas
-      L.esri
+      const aoi = L.esri
         .featureLayer({
           url: "https://services1.arcgis.com/0BLakgVcDpWpuh4i/arcgis/rest/services/GBR_Inshore_Areas/FeatureServer/0",
           style: function () {
              return { color: "#c91818", weight: 4 };
           }
-          }).addTo(map);
+          });
+
+      // https://leafletjs.com/reference.html#control-layers
+      L.control.layers(baseLayers, overlays).addTo(map);
+
+      const baseLayers = {
+        Imagery: img,
+        Map: L.esri.Vector.vectorBasemapLayer("arcgis/outdoor", {
+          apikey: apiKey
+        })
+      };
+
+      const overlays = {
+        "GBR Inshore": aoi,
+        "Reefs Update 2023": reefs
+      };
       
       // Add drawing tools
       map.pm.addControls(
