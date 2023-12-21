@@ -92,12 +92,14 @@
       // Add drawing tools
       map.pm.addControls(
       {
-        editControls: false,
-        drawMarker:false,
-        drawPolyline:false,
-        drawCircle:false,
+        editControls: true,
+        drawMarker:true,
+        drawPolyline:true,
+        drawPolygon:true,
+        drawCircle:true,
         drawText:false,
-        drawCircleMarker:false
+        editMode:true,
+        drawCircleMarker:false,
       });
 
       const worldMiniMap = L.control.worldMiniMap({position: 'topright', style: {opacity: 0.9, borderRadius: '0px', backgroundColor: 'lightblue'}}).addTo(map);
