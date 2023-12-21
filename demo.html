@@ -88,15 +88,6 @@
 
       // https://leafletjs.com/reference.html#control-layers
       L.control.layers(baseLayers, overlays).addTo(map);
-
-      L.control.scale().addTo(map);
-
-      setInterval(function(){
-          map.setView([0, 0]);
-          setTimeout(function(){
-              map.setView([60, 0]);
-          }, 2000);
-      }, 4000);
       
       // Add drawing tools
       map.pm.addControls(
