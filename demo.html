@@ -50,7 +50,7 @@
               if (feature.geometry.type !== "Polygon" && feature.geometry.type !== "MultiPolygon") 
               {
               // explicit call to resetStyle, now that we have feature data
-              reefs.resetStyle(feature.id);
+              layer.bindPopup(feature.properties.Remarks);
               }
           },
           style: function () {
