@@ -51,7 +51,7 @@
           });
 
       reefs.bindPopup(function (layer) {
-        return L.Util.template("<b>{TRL_NAME}</b><br>{PARK_NAME}</br>", layer.feature.properties);
+        return L.Util.template("<b>{FID}</b><br>{Remarks}</br>", layer.feature.properties);
       });
       
       // This feature layer for GBR Inshore Areas
