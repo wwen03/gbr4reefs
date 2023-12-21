@@ -45,19 +45,15 @@
       const reefs = L.esri
         .featureLayer({
           url: "https://services1.arcgis.com/0BLakgVcDpWpuh4i/arcgis/rest/services/GBR_Reefs_Inshore_Update_2023/FeatureServer/0",
-          onEachFeature: function(feature, layer)
-          {
-              if (feature.geometry.type !== "Polygon" && feature.geometry.type !== "MultiPolygon") 
-              {
-              // explicit call to resetStyle, now that we have feature data
-              layer.bindPopup(feature.properties.Remarks);
-              }
-          },
           style: function () {
              return { color: "#b137b8", weight: 3 };
           }
           });
 
+      reefs.bindPopup(function (layer) {
+        return L.Util.template("<b>{TRL_NAME}</b><br>{PARK_NAME}</br>", layer.feature.properties);
+      });
+      
       // This feature layer for GBR Inshore Areas
       const aoi = L.esri
         .featureLayer({
