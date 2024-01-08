@@ -62,7 +62,8 @@
              return { color: "#c91818", weight: 4 };
           }
           });
-      
+
+      // This feature layer for Imagery basemap
       const img = L.esri.Vector.vectorBasemapLayer("arcgis/imagery", {
         apikey: apiKey
       });
@@ -70,7 +71,7 @@
       const map = L.map("map", {
         center: [-19.17742, 145.828308],
         zoom: 6,
-        layers: [img, reefs]
+        layers: [img, reefs, aoi]
       });
       
       const baseLayers = {
